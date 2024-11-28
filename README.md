@@ -1,5 +1,7 @@
 # App-e-commerce : Prestashop
 
+# Automatisez les tests d'une équipe de qualification
+
 1- Installations
 - Java
   sudo apt update
