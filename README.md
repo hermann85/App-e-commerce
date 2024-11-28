@@ -16,16 +16,16 @@
    sudo apt-get update
    sudo apt-get install jenkins
   
-  *activer le service Jenkins
+  * activer le service Jenkins
  
     sudo systemctl enable jenkins
     sudo systemctl start jenkins
     sudo systemctl status jenkins
  
-   *Récuperer le mot de passe
+  * Récuperer le mot de passe
     sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
-*Pour voir le Jenkins : localhost:8080
+  * Pour voir le Jenkins : localhost:8080
 
 - Prestashop via docker compose
  
