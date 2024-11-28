@@ -1,0 +1,42 @@
+pipeline {
+    agent any
+    stages {
+       stage('Lancement de prestashop et de sa base de données associée') {
+            steps {
+                sh 'docker-compose -f docker-compose-2.yml up -d'
+            }
+        }
+        
+        stage('Création de l\'environnement virtuel') {
+            steps { 
+                sh 'python3 -m venv prestashop'
+            }
+        }
+        
+        stage('Activation de l\'environnement virtuel') {
+            steps { 
+                sh '. prestashop/bin/activate'
+            }
+        }
+        
+        stage('Installation de selenium et webdriver-manager Python modules dans l\'environnement virtuel') {
+            steps { 
+                sh 'pip install selenium webdriver-manager'
+            }
+        }
+                
+        stage('Tester le menu de la boutique') {
+            steps { 
+                sh 'python3 selenium/test_prestashop_menu_boutique.py'
+            }
+        }
+        
+        stage('Arrêt de prestashop et de sa base de données associée') {
+            steps {
+                echo 'Arrêt de prestashop et de sa base de données associée' 
+                sh 'docker-compose stop -f docker-compose-2.yml'
+            }
+        }
+        
+    }
+}
